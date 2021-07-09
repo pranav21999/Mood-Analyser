@@ -4,10 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MoodAnalyserTest {
-	
-	/*refacor use case(Repete usecase1.1)
-	*passing String(I am Sad)  in Constructor
-	*/
+
 	@Test
 	public void givenMessage_whenSad_ShouldReturnSad() {
 		MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am sad");
@@ -23,10 +20,7 @@ public class MoodAnalyserTest {
 		String expected = "SAD";
 		Assert.assertEquals(expected, actual);
 	}
-	/*refacor use case(Repeat UC1.2)
-	*passing String(I am Happy)  in Constructor
-	*/
-	
+
 	@Test
 	public void givenMessage_whenHappy_ShouldReturnHappy() {
 		MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am Happy");
@@ -34,3 +28,19 @@ public class MoodAnalyserTest {
 		String expected = "HAPPY";
 		Assert.assertEquals(expected, actual);
 	}
+
+	/*UC2.2
+	 * Given Null mood Should return Happy
+	 */
+	@Test
+	public void givenMessage_whenNull_ShouldReturnNull() {
+		String expected = "Happy";
+		try {
+			MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
+			moodAnalyzer.analyseMood();
+		} catch (NullPointerException e) {
+			Assert.assertEquals(expected,e.getMessage());
+		}
+	}
+
+}

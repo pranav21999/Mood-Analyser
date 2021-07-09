@@ -1,10 +1,15 @@
 package moodanalyzer;
 
-public class MoodAnalyzer {
+public class MoodAnalyser {
 	private String message;
 
-	// Constructor
-	public MoodAnalyzer() {
+	// Constructor without parameter
+	public MoodAnalyser() {
+	}
+
+	// Constructor with parameter
+	public MoodAnalyser(String message) {
+		this.message = message;
 	}
 
 	// getter method to access private variable
@@ -12,22 +17,19 @@ public class MoodAnalyzer {
 		return message;
 	}
 
-	// paramerterised Constructor
-	public MoodAnalyzer(String message) {
-		super();
-		this.message = message;
-	}
-
+	/*
+	 * Handle Exception using try_catch block if User enter NULL data
+	 */
 	public String analyseMood() {
 		try {
-			/*
-			 * if (message == null) return null;
-			 */
-			if (message.contains("Sad") || message.contains("SAD"))
+			if (message.contains("sad")) {
 				return "SAD";
-			return "HAPPY";
-		} catch (NullPointerException e) {
-			// return "Happy";
-			throw new NullPointerException("Invalid msg");
+			} else {
+				return "HAPPY";
+			}
+		} catch (NullPointerException npe) {//handle Exception
+				return "Happy";
+
 		}
 	}
+}
