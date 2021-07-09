@@ -1,35 +1,30 @@
 package moodanalyzer;
 
-public class MoodAnalyser {
+public class MoodAnalyzer {
+
 	private String message;
 
-	// Constructor without parameter
-	public MoodAnalyser() {
+	// constructor
+	public MoodAnalyzer() {
 	}
 
-	// Constructor with parameter
-	public MoodAnalyser(String message) {
+	// parameterised constructor
+	public MoodAnalyzer(String message) {
 		this.message = message;
 	}
 
-	// getter method to access private variable
-	public String getMessage() {
-		return message;
-	}
-
 	/*
-	 * Handle Exception using try_catch block if User enter NULL data
+	 * throws excetion from class MoodAnalysisException using Enum
 	 */
-	public String analyseMood() {
+	public String analyseMood() throws MoodAnalysisException {
 		try {
-			if (message.contains("sad")) {
+			if (message == "")
+				throw new MoodAnalysisException("Invalid message", MoodAnalysisException.ExceptionType.ENTERED_EMPTY);
+			if (message.toLowerCase().contains("sad"))
 				return "SAD";
-			} else {
-				return "HAPPY";
-			}
-		} catch (NullPointerException npe) {//handle Exception
-				return "Happy";
-
+			return "HAPPY";
+		} catch (NullPointerException e) {
+			throw new MoodAnalysisException("Invalid message", MoodAnalysisException.ExceptionType.ENTERED_NULL);
 		}
 	}
 }
