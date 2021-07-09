@@ -1,14 +1,33 @@
 package moodanalyzer;
 
 public class MoodAnalyzer {
-		//condition of check  Analyser
-		public String analyseMood(String message) {
-			if (message == null)
-				return null;
+	private String message;
+
+	// Constructor
+	public MoodAnalyzer() {
+	}
+
+	// getter method to access private variable
+	public String getMessage() {
+		return message;
+	}
+
+	// paramerterised Constructor
+	public MoodAnalyzer(String message) {
+		super();
+		this.message = message;
+	}
+
+	public String analyseMood() {
+		try {
+			/*
+			 * if (message == null) return null;
+			 */
 			if (message.contains("Sad") || message.contains("SAD"))
 				return "SAD";
-			if (message.contains("Angry"))
-				return "ANGRY";
 			return "HAPPY";
+		} catch (NullPointerException e) {
+			// return "Happy";
+			throw new NullPointerException("Invalid msg");
 		}
 	}
